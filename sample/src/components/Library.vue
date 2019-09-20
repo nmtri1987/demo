@@ -28,14 +28,14 @@ export default {
     }
   },
   created() {
-    //normal case
+    //comment this to test for slot case
     this.books = [{ id: 1, name: "Book 1" }, { id: 2, name: "Book 2" }];
 
-    //for slot case
+    //un-comment this to test slot case
     // this.books = [{ id: 1, name: "Book 1", description: "science book" }, { id: 2, name: "Book 2" }];
   },
   mounted() {
-    //add 1 more book to test computed
+    //test computed
     let addingBook = setInterval(() => {
       let nextBook = this.counter + 1;
       if (nextBook >= 7) clearInterval(addingBook);
