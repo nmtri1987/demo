@@ -1,7 +1,7 @@
 <template>
   <section class="hello">
-    <h1>{{ book.name }}</h1>
-    <slot name="description">{{book.description}}</slot>
+    <h1>{{ thisBook.name }}</h1>
+    <slot name="description">{{thisBook.description}}</slot>
   </section>
 </template>
 
@@ -10,15 +10,19 @@ export default {
   name: "block",
   props: {
     book: {
-      type: Object,
-      default: { id: 0, name: "", description: "" }
+      type: Object
     }
   },
   data() {
     return {
-      book: this.book
+      thisBook: this.book
     };
   }
 };
 </script>
 
+<style scoped>
+a {
+  color: #42b983;
+}
+</style>
