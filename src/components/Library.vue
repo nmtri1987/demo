@@ -2,9 +2,27 @@
   <div class="hello">
     <div>
       Now we have
-      <span>{{counter}}</span> books
+      <span>{{counter}} books</span> |
+      <span v-if="!!recentlyBooked">The {{recentlyBooked}} is just booked!</span>
+      <span v-else>Nothing is booked!</span>
     </div>
-    <block v-for="book in books" v-bind:key="book.id" v-bind:book="book" />
+
+    <!-- comment to test slot-->
+    <block
+      v-for="book in books"
+      v-bind:key="book.id"
+      v-bind:book="book"
+      @showBookedItem="showBookedItem"
+    />
+
+    <!-- un-comment to test slot-->
+    <!-- <block
+      @showBookedItem="showBookedItem"
+      v-for="book in books"
+      v-bind:key="book.id"
+      v-bind:book="book"
+      v-slot:description
+    >{{book.description}}</block>-->
   </div>
 </template>
 
@@ -16,8 +34,14 @@ export default {
   data() {
     return {
       name: "Library",
-      books: []
+      books: [],
+      recentlyBooked: ""
     };
+  },
+  methods: {
+    showBookedItem: function(name) {
+      this.recentlyBooked = name;
+    }
   },
   computed: {
     counter: {
@@ -29,7 +53,10 @@ export default {
   },
   created() {
     //comment this to test for slot case
-    this.books = [{ id: 1, name: "Book 1" }, { id: 2, name: "Book 2" }];
+    this.books = [
+      { id: 1, name: "Book 1" },
+      { id: 2, name: "Book 2", description: "mafia book" }
+    ];
 
     //un-comment this to test slot case
     // this.books = [{ id: 1, name: "Book 1", description: "science book" }, { id: 2, name: "Book 2" }];
@@ -38,7 +65,7 @@ export default {
     //test computed
     let addingBook = setInterval(() => {
       let nextBook = this.counter + 1;
-      if (nextBook >= 7) clearInterval(addingBook);
+      if (nextBook >= 5) clearInterval(addingBook);
       this.books.push({ id: nextBook, name: `Book ${nextBook}` });
     }, 1000);
   }

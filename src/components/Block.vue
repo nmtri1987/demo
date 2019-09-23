@@ -2,8 +2,10 @@
   <section class="hello">
     <h1>{{ thisBook.name }}</h1>
     <button @click="borrowThis">Get me</button>
+    <br />
     <b>{{bookStatus}}</b>
-    <slot name="description">{{thisBook.description}}</slot>
+    <br />
+    <slot name="description">It's a good book</slot>
   </section>
 </template>
 
@@ -25,6 +27,9 @@ export default {
   methods: {
     borrowThis: function() {
       this.isBorrowed = true;
+
+      //test cuatom event - exchange signal between child-parent
+      this.$emit("showBookedItem", this.thisBook.name);
     }
   },
   watch: {
@@ -35,7 +40,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style css scoped>
+*:not(button) {
+  line-height: 2rem;
+}
 a {
   color: #42b983;
 }
