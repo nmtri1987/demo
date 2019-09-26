@@ -6,7 +6,7 @@
       <span v-if="!!recentlyBooked">The {{recentlyBooked}} is just booked!</span>
       <span v-else>Nothing is booked!</span>
     </div>
-
+  <p v-html="rawHtml"></p>
     <!-- comment to test slot-->
     <block
       v-for="book in books"
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import Block from "@/components/Block";
+import Block from "@/components/sample_1/Block";
 export default {
   name: "library",
   components: { Block },
@@ -35,7 +35,7 @@ export default {
     return {
       name: "Library",
       books: [],
-      recentlyBooked: ""
+      recentlyBooked: "",
     };
   },
   methods: {

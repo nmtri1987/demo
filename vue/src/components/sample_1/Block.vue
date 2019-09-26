@@ -1,11 +1,11 @@
 <template>
   <section class="hello">
     <h1>{{ thisBook.name }}</h1>
-    <button @click="borrowThis">Get me</button>
-    <br />
     <b>{{bookStatus}}</b>
     <br />
     <slot name="description">It's a good book</slot>
+    <br />
+    <button v-show="!isBorrowed" @click="borrowThis">Get me</button>
   </section>
 </template>
 
