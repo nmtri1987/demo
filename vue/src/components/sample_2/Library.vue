@@ -22,7 +22,7 @@
       v-bind:key="book.id"
       v-bind:book="book"
       v-slot:description
-    >{{book.description}}</block>-->  
+    >{{book.description}}</block>-->
   </div>
 </template>
 
