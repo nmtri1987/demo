@@ -6,7 +6,6 @@
       <span v-if="!!recentlyBooked">The {{recentlyBooked}} is just booked!</span>
       <span v-else>Nothing is booked!</span>
     </div>
-  <p v-html="rawHtml"></p>
     <!-- comment to test slot-->
     <block
       v-for="book in books"
@@ -14,20 +13,11 @@
       v-bind:book="book"
       @showBookedItem="showBookedItem"
     />
-
-    <!-- un-comment to test slot-->
-    <!-- <block
-      @showBookedItem="showBookedItem"
-      v-for="book in books"
-      v-bind:key="book.id"
-      v-bind:book="book"
-      v-slot:description
-    >{{book.description}}</block>-->
   </div>
 </template>
 
 <script>
-import Block from "@/components/sample_1/Block";
+import Block from "@/components/communicate_sample/Block.emit";
 export default {
   name: "library",
   components: { Block },
@@ -35,7 +25,7 @@ export default {
     return {
       name: "Library",
       books: [],
-      recentlyBooked: "",
+      recentlyBooked: ""
     };
   },
   methods: {
@@ -52,14 +42,10 @@ export default {
     }
   },
   created() {
-    //comment this to test for slot case
     this.books = [
       { id: 1, name: "Book 1" },
       { id: 2, name: "Book 2", description: "mafia book" }
     ];
-
-    //un-comment this to test slot case
-    // this.books = [{ id: 1, name: "Book 1", description: "science book" }, { id: 2, name: "Book 2" }];
   },
   mounted() {
     //test computed

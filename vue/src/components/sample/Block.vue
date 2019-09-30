@@ -1,9 +1,9 @@
 <template>
   <section class="hello">
     <h1>{{ thisBook.name }}</h1>
-    <b>{{bookStatus}}</b>
+    <b>{{ thisBook.description}}</b>
     <br />
-    <slot name="description">It's a good book</slot>
+    <b>{{bookStatus}}</b>
     <br />
     <button v-show="!isBorrowed" @click="borrowThis">Get me</button>
   </section>
@@ -27,9 +27,6 @@ export default {
   methods: {
     borrowThis: function() {
       this.isBorrowed = true;
-
-      //test cuatom event - exchange signal between child-parent
-      this.$emit("showBookedItem", this.thisBook.name);
     }
   },
   watch: {
